@@ -14,4 +14,26 @@ class NewsModel {
     this.publishDate,
     this.updateDate,
   );
+
+  factory NewsModel.fromJson(Map<String, dynamic> json) {
+    return NewsModel(
+      json['id'] as int,
+      json['title'] as String,
+      json['description'] as String,
+      json['image'] as String,
+      DateTime.parse(json['publishDate'] as String),
+      DateTime.parse(json['updateDate'] as String),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'image': image,
+      'publishDate': publishDate.toIso8601String(),
+      'updateDate': updateDate.toIso8601String(),
+    };
+  }
 }
