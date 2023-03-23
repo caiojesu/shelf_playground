@@ -8,5 +8,8 @@ void main() async {
   var cascadeHandler =
       Cascade().add(LoginApi().handler).add(BlogApi().handler).handler;
 
-  await CustomServer().initialize(cascadeHandler);
+  var handler =
+      Pipeline().addMiddleware(logRequests()).addHandler(cascadeHandler);
+
+  await CustomServer().initialize(handler);
 }
