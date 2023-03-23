@@ -1,5 +1,6 @@
-import 'package:shelf_playground/shelf_playground.dart' as shelf_playground;
+import 'api/login_api.dart';
+import 'infra/custom_server.dart';
 
-void main(List<String> arguments) {
-  print('Hello world: ${shelf_playground.calculate()}!');
+void main() async {
+  await CustomServer().initialize(LoginApi().handler);
 }
